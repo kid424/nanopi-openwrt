@@ -1,0 +1,22 @@
+name: test token
+
+on:
+  workflow_dispatch:
+    branches: [ master ]
+    paths:
+      - '.github/workflows/test_token.yml'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-18.04
+    if: github.repository == 'kid424/nanopi-openwrt'
+
+    steps:
+
+      - name: Print token
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEC_TOKEN }}
+        run:
+          echo $GITHUB_TOKEN
