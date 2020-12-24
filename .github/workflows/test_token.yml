@@ -17,6 +17,6 @@ jobs:
 
       - name: Print token
         env:
-          GITHUB_TOKEN: ${{ secrets.SEC_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.sec_token }}
         run:
           echo $GITHUB_TOKEN
