@@ -1,19 +1,25 @@
 name: r1s Lean版openwrt
 
 on:
-  push:
+  workflow_dispatch:
     branches: [ master ]
     paths:
       - '.github/workflows/r1s_lean.yml'
-  schedule:
-    - cron: '10 10 */4 * *'
+
+#on:
+#  push:
+#    branches: [ master ]
+#    paths:
+#      - '.github/workflows/r1s_lean.yml'
+#  schedule:
+#    - cron: '10 10 */4 * *'
 
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
-    if: github.repository == 'klever1988/nanopi-openwrt'
+    runs-on: ubuntu-18.04
+    if: github.repository == 'kid424/nanopi-openwrt'
 
     steps:
 
@@ -48,7 +54,9 @@ jobs:
           git checkout upstream/lede-17.01 -- feeds.conf.default && sed -i -E 's/#(src-git.+)(helloworld.+)/\1\2/' feeds.conf.default
           curl 'https://git.openwrt.org/?p=openwrt/openwrt.git;a=patch;h=22378beb581b113def1dc392ef75306a2168a163' | git apply --reject - || true
           . ../../3_prepare_packages.sh
-          git apply ../../enable_autocore.diff
+          . ../../ssrplus_blacklist_to_whitelist.sh
+          . ../../add_r1s.sh
+          # git apply ../../enable_autocore.diff
           . ../../5_mods.sh
 
       - name: Build FriendlyWrt
@@ -58,7 +66,7 @@ jobs:
         id: assemble_artifact
         run: |
           . x_assemble_artifact.sh
-          release_tag="R1S-Lean-$(date +%Y-%m-%d)"
+          release_tag="R1S-Lean-$(date +%Y-%m-%d-%H%M%S)"
           echo "##[set-output name=release_tag;]$release_tag"
       - name: Create Release
         id: create_release
