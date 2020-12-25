@@ -34,7 +34,7 @@ jobs:
         run: . 1_initialization_environment.sh
 
       - name: Clone Source
-        run: . 2_clone_source.sh master-v19.07.1 h5
+        run: . 2_clone_source_r1s.sh master-v19.07.1 h5
 
       - name: Mods
         run: |
