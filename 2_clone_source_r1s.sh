@@ -10,6 +10,7 @@ cd friendlywrt/ && git fetch --unshallow
 git checkout `git branch -va | grep remotes/m | awk '{print $3}' | awk -F\/ '{print $2}'`
 
 [ -f target/linux/allwinner-h5/config-4.14 ] &&    sed -i '/CONFIG_CGROUPS/a\CONFIG_CGROUP_PERF=y' target/linux/allwinner-h5/config-4.14
+rm -rf target/linux/allwinner-h5/patches-4.14/*
 git add . && git commit -m 'reset'
 
 cd ../ && find device/ -name distfeeds.conf -delete
