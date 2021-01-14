@@ -9,7 +9,7 @@ git checkout `git branch -va | grep remotes/m | awk '{print $3}' | awk -F\/ '{pr
 cd ..
 rm -rf friendlywrt
 git clone https://github.com/kid424/friendlywrt.git
-
+cd friendlywrt
 [ -f target/linux/allwinner-h5/config-4.14 ] &&    sed -i '/CONFIG_CGROUPS/a\CONFIG_CGROUP_PERF=y' target/linux/allwinner-h5/config-4.14
 git add . && git commit -m 'reset'
 
