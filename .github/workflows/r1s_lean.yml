@@ -56,7 +56,7 @@ jobs:
           . ../../3_prepare_packages.sh
           . ../../ssrplus_blacklist_to_whitelist.sh
           . ../../add_r1s.sh
-          git apply ../../enable_autocore.diff
+          #git apply ../../enable_autocore.diff
           . ../../5_mods.sh
 
       - name: Build FriendlyWrt
