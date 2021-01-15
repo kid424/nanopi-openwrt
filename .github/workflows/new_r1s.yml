@@ -48,8 +48,8 @@ jobs:
           #git checkout 33f7cb735300bd9a099995236ed768c8925fec75 -- target/linux/sunxi/image/
           git rm README.md
           git commit -m 'reset'
-          git checkout master-v19.07.5
-          git rebase 63a76b30223da4867ea90096673589a8ad7ceaaf^ --onto tmp -X theirs
+          git checkout master-v19.07.1
+          git rebase f0fc45e9f8bb9b7f3bc4b7ac1f521545d77ffaae^ --onto tmp -X theirs
           rm -f target/linux/allwinner-h5/patches-4.14/0001-net-thunderx-workaround-BGX-TX-Underflow-issue.patch target/linux/generic/hack-4.14/999-net-patch-linux-kernel-to-support-shortcut-fe.patch
           git checkout upstream/lede-17.01 -- feeds.conf.default && sed -i -E 's/#(src-git.+)(helloworld.+)/\1\2/' feeds.conf.default
           curl 'https://git.openwrt.org/?p=openwrt/openwrt.git;a=patch;h=22378beb581b113def1dc392ef75306a2168a163' | git apply --reject - || true
