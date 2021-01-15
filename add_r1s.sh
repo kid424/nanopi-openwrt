@@ -1,5 +1,5 @@
 cd package/openwrt-packages
-[ ! -d luci-app-openclash ] && git clone -b master https://github.com/vernesong/OpenClash.git
+[ ! -d luci-app-openclash ] && git clone --depth=1 -b master https://github.com/vernesong/OpenClash.git
 cd ../base-files/files
 mkdir -p etc/openclash/core && cd etc/openclash/core
 curl -L https://github.com/vernesong/OpenClash/releases/download/Clash/clash-linux-armv8.tar.gz | tar zxf -
